@@ -1,4 +1,4 @@
-﻿namespace Integrando_APIs_con_ADO.NET.DTOs
+﻿namespace Proyecto_Final.DTOs
 {
     public class DTOUsuario
     {

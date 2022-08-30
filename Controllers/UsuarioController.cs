@@ -1,14 +1,21 @@
-﻿using ConsoleApp;
-using ConsoleApp.Models;
-using Integrando_APIs_con_ADO.NET.DTOs;
+﻿using Proyecto_Final.Repo;
+using Proyecto_Final.Models;
+using Proyecto_Final.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Integrando_APIs_con_ADO.NET.Controllers
+namespace Proyecto_Final.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class UsuarioController : ControllerBase
     {
+
+        [HttpGet("{nombreUsuario}/{contraseña}")]
+        public Usuario InicioSesion(string nombreUsuario,string contraseña)
+        {
+            return UsuarioHandler.GetUsuario();
+        }
+
         [HttpGet]
         public List<Usuario> GetUsuario()
         {

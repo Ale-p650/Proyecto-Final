@@ -3,7 +3,7 @@ using ConsoleApp.Models;
 using Integrando_APIs_con_ADO.NET.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Integrando_APIs_con_ADO.NET.Controllers
+namespace Proyecto_Final.Controllers
 {
     [ApiController]
     [Route("[controller]")]

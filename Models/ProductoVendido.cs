@@ -1,5 +1,5 @@
 ﻿
-namespace ConsoleApp.Models
+namespace Proyecto_Final.Models
 {
     public class ProductoVendido
     {

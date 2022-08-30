@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace ConsoleApp
+namespace Proyecto_Final.Repo
 {
     public class ProductoHandler : DBHandler
     {

@@ -2,7 +2,7 @@
 
 using System.Data.SqlClient;
 
-namespace ConsoleApp
+namespace Proyecto_Final.Repo
 {
     public static class InicioSesion 
     {

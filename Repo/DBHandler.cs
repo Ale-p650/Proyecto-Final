@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp
+namespace Proyecto_Final.Repo
 {
     public abstract class DBHandler
     {
