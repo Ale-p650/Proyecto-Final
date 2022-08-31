@@ -1,5 +1,5 @@
-﻿using ConsoleApp.Models;
-using Integrando_APIs_con_ADO.NET.DTOs;
+﻿using Proyecto_Final.Models;
+using Proyecto_Final.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using System.Data.SqlClient;

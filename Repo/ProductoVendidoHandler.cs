@@ -1,4 +1,4 @@
-﻿using ConsoleApp.Models;
+﻿using Proyecto_Final.Models;
 using System.Data;
 using System.Data.SqlClient;
 

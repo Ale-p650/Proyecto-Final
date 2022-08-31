@@ -8,7 +8,7 @@ namespace Proyecto_Final.Controllers
     [ApiController]
     [Route("api/[controller]")]
 
-    public class NombreLocalController : ControllerBase
+    public class NombreController : ControllerBase
     {
 
         [HttpGet]

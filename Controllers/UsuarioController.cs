@@ -10,10 +10,16 @@ namespace Proyecto_Final.Controllers
     public class UsuarioController : ControllerBase
     {
 
+        [HttpGet("{nombreUsuario}")]
+        public Usuario TraerUsuario(string nombreUsuario)
+        {
+            return UsuarioHandler.GetUsuarioConParam(nombreUsuario);
+        }
+
         [HttpGet("{nombreUsuario}/{contraseña}")]
         public Usuario InicioSesion(string nombreUsuario,string contraseña)
         {
-            return UsuarioHandler.GetUsuario();
+            return UsuarioHandler.GetUsuarioConParam(nombreUsuario, contraseña);
         }
 
         [HttpGet]
@@ -29,6 +35,15 @@ namespace Proyecto_Final.Controllers
             return UsuarioHandler.ModificarUsuario(usu);
         }
 
+        [HttpPost]
+
+        public bool CrearUsuario([FromBody] Usuario usu)
+        {
+            Usuario usuarioTest = UsuarioHandler.GetUsuarioConParam(usu.NombreUsuario);
+
+
+            return UsuarioHandler.CrearUsuario(usu);
+        }
 
 
     }

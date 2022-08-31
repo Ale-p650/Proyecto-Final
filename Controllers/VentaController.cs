@@ -1,6 +1,6 @@
-﻿using ConsoleApp;
-using ConsoleApp.Models;
-using Integrando_APIs_con_ADO.NET.DTOs;
+﻿using Proyecto_Final.Repo;
+using Proyecto_Final.Models;
+using Proyecto_Final.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Proyecto_Final.Controllers
