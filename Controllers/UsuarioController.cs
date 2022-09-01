@@ -39,12 +39,15 @@ namespace Proyecto_Final.Controllers
 
         public bool CrearUsuario([FromBody] Usuario usu)
         {
-            Usuario usuarioTest = UsuarioHandler.GetUsuarioConParam(usu.NombreUsuario);
-
-
+         
             return UsuarioHandler.CrearUsuario(usu);
         }
 
+        [HttpDelete]
 
+        public void EliminarUsuario([FromBody] int id)
+        {
+            UsuarioHandler.EliminarUsuario(id);
+        }
     }
 }

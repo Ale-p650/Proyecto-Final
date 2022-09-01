@@ -1,6 +1,7 @@
 ﻿using Proyecto_Final.Models;
 using Proyecto_Final.DTOs;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace Proyecto_Final.Repo
 {
@@ -12,7 +13,7 @@ namespace Proyecto_Final.Repo
 
             Usuario usuarioTest = GetUsuarioConParam(usuario.NombreUsuario);
 
-            
+
 
             if (string.IsNullOrEmpty(usuario.Nombre) || string.IsNullOrEmpty(usuario.Apellido) || string.IsNullOrEmpty(usuario.NombreUsuario) || string.IsNullOrEmpty(usuario.Contraseña) || string.IsNullOrEmpty(usuario.Mail))
             {
@@ -25,8 +26,8 @@ namespace Proyecto_Final.Repo
                 throw new Exception("ERROR :  Nombre de Usuario ya existente");
             }
 
-            
-            else devolucion = true; 
+
+            else devolucion = true;
 
             using (SqlConnection conn = new SqlConnection(ConnectionString))
             {
@@ -50,7 +51,7 @@ namespace Proyecto_Final.Repo
                     command.Parameters.Add(mailParam);
 
                     command.ExecuteNonQuery();
-                   
+
                 }
                 conn.Close();
 
@@ -101,15 +102,18 @@ namespace Proyecto_Final.Repo
             }
             return usu;
         }
-        public static Usuario GetUsuarioConParam(string nombreUsuario, string contraseña )
+        public static Usuario GetUsuarioConParam(string nombreUsuario, string contraseña)
         {
             Usuario usu = new Usuario();
-            using(SqlConnection conn = new SqlConnection(ConnectionString))
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
             {
                 string query = "SELECT * FROM USUARIO WHERE NOMBREUSUARIO= @nombreUsuario AND CONTRASEÑA=@contraseña";
 
                 using (SqlCommand command = new SqlCommand(query, conn))
                 {
+
+                    command.Parameters.AddWithValue("nombreUsuario", nombreUsuario);
+                    command.Parameters.AddWithValue("contraseña", contraseña);
                     conn.Open();
                     using (SqlDataReader dr = command.ExecuteReader())
                     {
@@ -132,7 +136,7 @@ namespace Proyecto_Final.Repo
                     }
                     conn.Close();
                 }
-            
+
             }
             return usu;
         }
@@ -181,7 +185,7 @@ namespace Proyecto_Final.Repo
                 SqlParameter apelliParam = new SqlParameter("apellido", System.Data.SqlDbType.VarChar) { Value = usu.Apellido };
                 SqlParameter nombreUsuParam = new SqlParameter("nombreusuario", System.Data.SqlDbType.VarChar) { Value = usu.NombreUsuario };
                 SqlParameter contraParam = new SqlParameter("contraseña", System.Data.SqlDbType.VarChar) { Value = usu.Contraseña };
-                SqlParameter idParam = new SqlParameter("id", System.Data.SqlDbType.BigInt) { Value=usu.Id };
+                SqlParameter idParam = new SqlParameter("id", System.Data.SqlDbType.BigInt) { Value = usu.Id };
 
                 conn.Open();
 
@@ -199,6 +203,28 @@ namespace Proyecto_Final.Repo
             }
 
             return devolucion;
+        }
+
+        public static void EliminarUsuario(int idfrombody)
+        {
+
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            {
+                string query = "DELETE FROM USUARIO WHERE ID = @id ";
+
+                SqlParameter idParam = new SqlParameter("id", SqlDbType.BigInt) { Value = idfrombody };
+                conn.Open();
+
+                using (SqlCommand command = new SqlCommand(query, conn))
+                {
+                    command.Parameters.Add(idParam);
+                    command.ExecuteNonQuery();
+
+                }
+                conn.Close();
+
+
+            }
         }
     }
 }
