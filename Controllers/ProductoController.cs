@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Proyecto_Final.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
 
     public class ProductoController : ControllerBase
     {
