@@ -7,15 +7,16 @@ namespace Proyecto_Final.Repo
 {
     public class VentasHandler : DBHandler
     {
-        public static List<Venta> GetVentas()
+        public static List<DTOVentaConProductoGET> GetVentas(int id)
         {
-            List<Venta> ventas = new List<Venta>();
+            List<DTOVentaConProductoGET> ventas = new List<DTOVentaConProductoGET>();
             using (SqlConnection conn = new SqlConnection(ConnectionString))
             {
-                string query = "SELECT * FROM VENTA";
-
+                string query = "select * from ProductoVendido left join Venta on ProductoVendido.IdVenta=Venta.Id where venta.Id=@id;";
+                SqlParameter idParam = new SqlParameter("id", id);
                 using (SqlCommand command = new SqlCommand(query, conn))
                 {
+                    command.Parameters.Add(idParam);
                     conn.Open();
                     using (SqlDataReader dr = command.ExecuteReader())
                     {
@@ -23,11 +24,13 @@ namespace Proyecto_Final.Repo
                         {
                             while (dr.Read())
                             {
-                                Venta venta = new Venta();
-                                venta.Id = Convert.ToInt32(dr["Id"]);
+                                DTOVentaConProductoGET obj = new DTOVentaConProductoGET();
+                                obj.IdVenta = Convert.ToInt32(dr["IdVenta"]);
+                                obj.IdProducto = Convert.ToInt32(dr["IdProducto"]);
+                                obj.Stock = Convert.ToInt32(dr["Stock"]);
 
 
-                                ventas.Add(venta);
+                                ventas.Add(obj);
                             }
                         }
                     }

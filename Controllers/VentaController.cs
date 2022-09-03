@@ -9,10 +9,10 @@ namespace Proyecto_Final.Controllers
     [Route("api/[controller]")]
     public class VentaController : ControllerBase
     {
-        [HttpGet]
-        public List<Venta> GetVentas()
+        [HttpGet("{id}")]
+        public List<DTOVentaConProductoGET> TraerVentas(int id)
         {
-            return VentasHandler.GetVentas();
+            return VentasHandler.GetVentas(id);
         }
 
         [HttpPost]
