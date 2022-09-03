@@ -44,6 +44,42 @@ namespace Proyecto_Final.Repo
             return products;
         }
 
+
+        public static List<Producto> GetProducto(int id)
+        {
+            List<Producto> products = new List<Producto>();
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            {
+                string query = "SELECT * FROM PRODUCTO WHERE IDUSUARIO=@idUsuario";
+                SqlParameter idParam = new SqlParameter("idUsuario", id);
+                using (SqlCommand command = new SqlCommand(query, conn))
+                {
+                    command.Parameters.Add(idParam);
+                    conn.Open();
+                    using (SqlDataReader dr = command.ExecuteReader())
+                    {
+                        if (dr.HasRows)
+                        {
+                            while (dr.Read())
+                            {
+                                Producto producto = new Producto();
+                                producto.Id = Convert.ToInt32(dr["Id"]);
+                                producto.Descripciones = Convert.ToString(dr["Descripciones"]);
+                                producto.Costo = Convert.ToDouble(dr["Costo"]);
+                                producto.PrecioVenta = Convert.ToDouble(dr["PrecioVenta"]);
+                                producto.Stock = Convert.ToInt32(dr["Stock"]);
+                                producto.IdUsuario = Convert.ToInt32(dr["IdUsuario"]);
+
+                                products.Add(producto);
+                            }
+                        }
+                    }
+                    conn.Close();
+                }
+            }
+
+            return products;
+        }
         public static bool CrearProducto(DTOProducto prod)
         {
             bool devolucion = false;

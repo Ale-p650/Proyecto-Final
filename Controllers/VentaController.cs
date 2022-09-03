@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Proyecto_Final.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class VentaController : ControllerBase
     {
         [HttpGet]
@@ -20,5 +20,7 @@ namespace Proyecto_Final.Controllers
         {
             VentasHandler.CargarVenta(lista);
         }
+
+
     }
 }

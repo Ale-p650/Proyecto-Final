@@ -12,9 +12,15 @@ namespace Proyecto_Final.Controllers
     {
 
         [HttpGet]
-        public List<Producto> GetProductos()
+        public List<Producto> TraerProductos()
         {
             return ProductoHandler.GetProducto();
+        }
+
+        [HttpGet("{id}")]
+        public List<Producto> TraerProductos(int id)
+        {
+            return ProductoHandler.GetProducto(id);
         }
 
         [HttpPost]
@@ -29,8 +35,8 @@ namespace Proyecto_Final.Controllers
             return ProductoHandler.ModificarProducto(prod);
         }
 
-        [HttpDelete]
-        public bool BorrarProducto([FromBody] int id)
+        [HttpDelete("{id}")]
+        public bool BorrarProducto(int id)
         {
             return ProductoHandler.BorrarProducto(id);
         }
