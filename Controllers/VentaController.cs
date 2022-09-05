@@ -21,6 +21,11 @@ namespace Proyecto_Final.Controllers
             VentasHandler.CargarVenta(lista);
         }
 
+        [HttpDelete("{id}")]
+        public void EliminarVenta(int id)
+        {
+            VentasHandler.EliminarVenta(id);
+        }
 
     }
 }
